@@ -31,15 +31,15 @@ This project is provided free and open sourced under the [GNU GPL3 License](http
 
 #### Gradle
 * This project uses gradle as its build tool
-* <pre><code>./gradlew clean build</code></pre>
+* ```./gradlew clean build```
 
 ---
 ### Continuous Integration / Deployments
 * We use the [bitbucket pipeline](./bitbucket-pipelines.yml) as our CI solution
 * Each time there is a commit the default pipeline will be triggered which does the following:
-    * Builds the project <pre><code>./gradlew clean build</code></pre>
+    * Builds the project ```./gradlew clean build```
     * Run tests
-    * Deploys the build artifact to aws as a lambda<pre><code>serverless deploy</code></pre>
+    * Deploys the build artifact to aws as a lambda ```serverless deploy```
 
 ---
 ### Serverless Deployments
