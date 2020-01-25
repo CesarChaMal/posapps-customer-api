@@ -21,7 +21,7 @@ This project is provided free and open sourced under the [GNU GPL3 License](http
 ---
 ### How to build the project
 
-####Database
+#### Database
 * The project requires persistence and uses MySql as the default data-source
 * To be able to run the tests locally you will need to create a schema with with following details:
     * schema name: **posapps_customer_test**
@@ -29,7 +29,7 @@ This project is provided free and open sourced under the [GNU GPL3 License](http
     * password: **password**
 * The project uses [flyway](https://flywaydb.org/) for migrations.
 
-####Gradle
+#### Gradle
 * This project uses gradle as its build tool
 * <pre><code>./gradlew clean build</code></pre>
 
@@ -40,6 +40,7 @@ This project is provided free and open sourced under the [GNU GPL3 License](http
     * Builds the project <pre><code>./gradlew clean build</code></pre>
     * Run tests
     * Deploys the build artifact to aws as a lambda<pre><code>serverless deploy</code></pre>
+
 ---
 ### Serverless Deployments
 * This is a [serverless](https://serverless.com/) project and uses [AWS lambda](https://aws.amazon.com/lambda/) as its implementation
@@ -48,5 +49,8 @@ This project is provided free and open sourced under the [GNU GPL3 License](http
 ### Code contributions / Pull Requests
 * If you would like to make a pull request into master please add Hugh Stevenson (project owner) to the PR with a detailed description and tests illustrating the changes and impacts.
 
+---
 ### Architecture 
 ![Alt text](https://confluence-connect.gliffy.net/embed/image/8aef5aa9-9c47-4b79-8c5c-23e973c9de67.png?utm_medium=live&utm_source=custom)
+
+---
