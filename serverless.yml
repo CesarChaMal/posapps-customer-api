@@ -1,0 +1,170 @@
+service: posapps-customer
+
+provider:
+  name: aws
+  runtime: java8
+  memorySize: 3008
+  timeout: 60
+  region: eu-west-1
+
+package:
+    artifact: build/distributions/posapps-customer-1.0-SNAPSHOT.zip
+
+functions:
+  customer:
+    handler: io.posapps.customer.CustomerApplication
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
+          documentation:
+            summary: "Get Customer updates"
+            description: "Call this endpoint from your device to get a list of customers that need updating for the device in question"
+            requestHeaders:
+              -
+                name: "Authorization"
+                description: "Basic auth using the username and password when you registered your posapps.io account"
+            queryParams:
+              -
+                name: "device"
+                description: "The name of your device you want customer updates for"
+            methodResponses:
+              -
+                statusCode: "200"
+                responseBody:
+                  description: "Customers updates returned for your device"
+              -
+                statusCode: "400"
+      - http:
+          path: /
+          method: post
+          cors: true
+          documentation:
+            summary: "Create a Customer"
+            description: "Call this endpoint from your device to create a customer"
+            requestHeaders:
+              -
+                name: "Authorization"
+                description: "Basic auth using the username and password when you registered your posapps.io account"
+            queryParams:
+              -
+                name: "device"
+                description: "The name of your device you are creating the Customer from"
+            methodResponses:
+              -
+                statusCode: "200"
+                responseBody:
+                  description: "Confirmation of the Customer created"
+              -
+                statusCode: "400"
+                responseModels:
+                  "application/json": "ErrorResponse"
+      - http:
+          path: /
+          method: put
+          cors: true
+          documentation:
+            summary: "Update Customer"
+            description: "Update an existing Customer"
+            tags:
+              - "Customer API"
+            requestHeaders:
+              -
+                name: "Authorization"
+                description: "Basic auth using the username and password when you registered your posapps.io account"
+            queryParams:
+              -
+                name: "device"
+                description: "The name of your device you are make the Customer update from"
+            methodResponses:
+              -
+                statusCode: "200"
+                responseBody:
+                  description: "Confirmation of the Customer updated"
+              -
+                statusCode: "400"
+                responseModels:
+                  "application/json": "ErrorResponse"
+      - http:
+          path: /
+          method: delete
+          cors: true
+          documentation:
+            summary: "Delete a Customer"
+            description: "Call this endpoint from your device to delete a customer"
+            requestHeaders:
+              -
+                name: "Authorization"
+                description: "Basic auth using the username and password when you registered your posapps.io account"
+            queryParams:
+              -
+                name: "device"
+                description: "The name of your device you want customer updates for"
+              -
+                name: "email"
+                description: "The email address of the customer you are deleting"
+            methodResponses:
+              -
+                statusCode: "200"
+                responseBody:
+                  description: "Confirmation of the Customer deleted"
+              -
+                statusCode: "400"
+                responseModels:
+                  "application/json": "ErrorResponse"
+      - http:
+          path: status
+          method: get
+          cors: true
+          documentation:
+            summary: "Customer API status"
+            description: "Endpoint tells you the status and version of the API"
+            methodResponses:
+              -
+                statusCode: "200"
+                responseBody:
+                  description: "Status response"
+                responseModels:
+                  "application/json": "StatusResponse"
+              -
+                statusCode: "400"
+                responseModels:
+                  "application/json": "ErrorResponse"
+
+plugins:
+  - serverless-aws-documentation
+
+custom:
+  documentation:
+    summary: "posApps Customer API"
+    description: "posApps Customer API for managing all you Customer data across multiple devices"
+    tags:
+      -
+        name: "Customer API"
+    models:
+      -
+        name: "CustomerRequest"
+        description: "Customer object to use for creating and updating Customers"
+        contentType: "application/json"
+        schema: ${file(model/CustomerRequest.json)}
+      -
+        name: "CustomersResponse"
+        description: "An arrary of the Customer object"
+        contentType: "application/json"
+        schema: ${file(model/CustomersResponse.json)}
+      -
+        name: "CustomerResponse"
+        description: "Customer object showing current state"
+        contentType: "application/json"
+        schema: ${file(model/CustomerResponse.json)}
+      -
+        name: "StatusResponse"
+        description: "Show status information"
+        contentType: "application/json"
+        schema: ${file(model/StatusResponse.json)}
+      -
+        name: "ErrorResponse"
+        description: "Error Message"
+        contentType: "application/json"
+        schema: ${file(model/ErrorResponse.json)}

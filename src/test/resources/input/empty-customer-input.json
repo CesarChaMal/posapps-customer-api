@@ -1,0 +1,44 @@
+{
+    "resource": "/",
+    "path": "/",
+    "httpMethod": "POST",
+    "headers": {
+        "Authorization": "Basic aHVnaHNAcG9zYXBwcy5pbzpQYXNzd29yZA=="
+    },
+    "queryStringParameters": {
+        "device": "terminal1"
+    },
+    "pathParameters": null,
+    "stageVariables": {
+        "profile": "local",
+        "dataSourceUrl": "jdbc:mysql://127.0.0.1:3306/posapps_customer_test?useSSL=false",
+        "dataSourceUsername": "posapps_test",
+        "dataSourcePassword": "password"
+    },
+    "requestContext": {
+        "path": "/",
+        "accountId": "117001727020",
+        "resourceId": "6tqip5yb90",
+        "stage": "test-invoke-stage",
+        "requestId": "test-invoke-request",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": "117001727020",
+            "cognitoIdentityId": null,
+            "caller": "117001727020",
+            "apiKey": "test-invoke-api-key",
+            "sourceIp": "test-invoke-source-ip",
+            "accessKey": "ASIAJ2RDABEWAKC2LMWA",
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": "arn:aws:iam::117001727020:root",
+            "userAgent": "Apache-HttpClient/4.5.x (Java/1.8.0_112)",
+            "user": "117001727020"
+        },
+        "resourcePath": "/",
+        "httpMethod": "POST",
+        "apiId": "lf1eqrdewk"
+    },
+    "body": "{\"firstName\": \"\",\"lastName\": \"\",\"emailAddress\": \"\"}",
+    "isBase64Encoded": false
+}
