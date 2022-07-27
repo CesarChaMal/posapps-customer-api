@@ -29,7 +29,6 @@ class ApiService {
 
   @Value('${posapps.woocom.adapter.endpoint}')
   String woocomAdapter
-
   void createCustomer(Customer customer, SystemUser systemUser) {
 
     try {
